@@ -54,7 +54,11 @@ jQuery(function($){
 			},
 			email: {
 				required:  true,
-				email: true
+				email: true,
+				remote: {
+					url: "/ajax/check_email.php",
+					type: "post"
+				}
 			},
 			password: {
 				required: true,
@@ -71,7 +75,8 @@ jQuery(function($){
 			},
 			email: {
 				required: "Введите email",
-				email: "Ваш email должен быть в формате name@domain.com"
+				email: "Ваш email должен быть в формате name@domain.com",
+				remote: "Данный email уже зарегистрирован"
 			},
 			password: {
 				required: "Введите пароль",
@@ -91,7 +96,8 @@ jQuery(function($){
 			url: "/ajax/register.php",
 			data: $("#reg_form").serialize()
 			}).done(function() {
-				$("#reg_form").find($(".result")).text("done!");
+				$("#reg_form_box").hide();
+				$("#login_form_box").show();
 			});
 		};
 	});
