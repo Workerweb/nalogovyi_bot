@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Личный помощник по налогам</title>
+	<!--<link href="https://fonts.googleapis.com/css?family=Oswald:400,500,600,700&amp;subset=cyrillic" rel="stylesheet">-->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/media.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery.maskedinput.min.js"></script>
+	<script src="js/jquery.validate.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+	<div class="wrapper">
+
+		<div class="menu">
+
+			<nav>
+
+				<a href="#" class="menu-trigger">Меню</a>
+				<ul>
+					<li>
+						<a href="#" id="login_btn">Войти</a>
+					</li>
+					<li>
+						<a href="#" id="reg_btn">Зарегистрироваться</a>
+					</li>
+					<li>
+						<a href="#" id="profile_btn">Личный кабинет</a>
+					</li>
+				</ul>
+
+			</nav>
+
+		</div>
+		<div id="login_form_box" class="login_form">
+				
+			<h2>Войти</h2>
+			<form id="login_form" class="form" action="">
+					
+				<input name="email" class="field" type="email" placeholder="E-mail">
+
+				<input class="field" type="password" name="password" placeholder="Пароль">
+				<span id="valid_password_message" class="message_error"></span>
+
+				<button id="login_btn_submit" class="submit" type="button">Войти</button>
+				
+				<button class="cnl_btn" type="button">Отмена</button>
+				
+				<label class="checkbox">
+
+			    	<input type="checkbox" checked="checked" name="remember_me"> 
+			    	<span class="checkbox_text">
+			    		Запомнить меня
+			    	</span>
+
+			    </label>
+
+			    <span class="psw">
+		    		Забыли <a href="#">
+		    			пароль?
+		    		</a>
+		    	</span>
+			</form>
+
+		</div>
+
+		<div id="reg_form_box" class="reg_form">
+
+			<h2>Зарегистрируйся</h2>
+			<form id="reg_form" class="form" action="" method="post">
+
+				<input name="phone" id="phone" class="field" type="phone" placeholder="Телефон" value="" autocomplete="off">
+
+				<input name="email" class="field" type="email" placeholder="E-mail" value="" autocomplete="off">
+
+				<input id="reg_pass" class="field" type="password" name="password" placeholder="Пароль минимум 6 символов">
+
+				<input class="field" type="password" name="confirm_password" placeholder="Пароль еще раз">
+
+				<button id="reg_btn_submit" class="submit" type="button">Зарегистрироваться</button>
+				<span class="result"></span>
+
+				<button class="cnl_btn" type="button">Отмена</button>
+
+			</form>
+
+		</div>
+
+		<div id="profile_box" class="profile">
+
+			<h2>Ваши данные</h2>
+
+			<div id="profile_data" class="">
+				
+				<label for="bin">БИН:</label>
+					<input name="bin" id="bin" class="profile_data" type="text" value="Ваш БИН" readonly>
+
+				<label for="ip">ИП:</label>
+					<input name="ip" id="ip" class="profile_data" type="text" value="Наименование ИП" readonly>
+
+				<label for="surname">Фамилия:</label>
+					<input name="surname" id="surname" class="profile_data" type="text" value="Ваша фамилия" readonly>
+
+				<label for="name">Имя:</label>
+					<input name="name" id="name" class="profile_data" type="text" value="Ваше имя" readonly>
+
+				<label for="patronymic">Отчество:</label>
+					<input name="patronymic" id="patronymic" class="profile_data" type="text" value="Ваше отчество" readonly>
+				<label for="resident">Резидентство:</label>
+					<input name="resident" id="resident" class="profile_data" type="text" value="Резидент РК" readonly>
+					<span class="result"></span>
+			    <button class="submit" id="change_profile">Заполнить данные</button>
+				<button class="save_btn" id="save_profile">Сохранить</button>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

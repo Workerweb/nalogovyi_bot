@@ -1,0 +1,252 @@
+*
+{
+	margin: 0;
+	padding: 0;
+}
+
+html,
+body,
+.wrapper
+{
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	font-family: 'Oswald', sans-serif;
+}
+
+.wrapper
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	background: #b524b5; /* Old browsers */
+	background: -moz-linear-gradient(-45deg, #b524b5 0%, #5b22d6 36%, #2b53e5 71%, #2faafc 100%, #2989d8 100%, #7db9e8 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(-45deg, #b524b5 0%,#5b22d6 36%,#2b53e5 71%,#2faafc 100%,#2989d8 100%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(135deg, #b524b5 0%,#5b22d6 36%,#2b53e5 71%,#2faafc 100%,#2989d8 100%,#7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b524b5', endColorstr='#7db9e8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.menu
+{
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.menu nav
+{
+	padding: 10px;
+	float: right;
+}
+
+.menu nav ul li
+{
+	display: inline-block;
+	list-style: none;
+	margin: 5px;
+}
+
+.menu nav ul li a
+{
+	text-decoration: none;
+	color: #fff;
+}
+
+.menu-trigger
+{
+	text-decoration: none;
+	display: none;
+	color: #fff;
+}
+
+.reg_form,
+.login_form
+{
+	position: absolute;
+	width: 40%;
+	text-align: center;
+	display: none;
+}
+
+.reg_form h2
+{
+	
+}
+
+.form
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+	width: 80%;
+	margin: 20px auto;
+}
+
+.field
+{
+	border: 2px solid transparent;
+	border-radius: 10px;
+	margin: 10px 0;
+	padding: 10px;
+	background-color: rgba(255,255,255,.45);
+	box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+	outline: none;
+	color: #fff;
+	font-family: 'Oswald', sans-serif;
+	transition: .3s;
+}
+.field::-webkit-input-placeholder {
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+}
+
+.submit,
+.cnl_btn,
+.save_btn
+{
+	border: 2px solid rgba(255,255,255,.45);
+	border-radius: 10px;
+	margin: 10px 0;
+	background-color: transparent;
+	padding: 10px;
+	color: #fff;
+	font-family: 'Oswald', sans-serif;
+	outline: none;
+	cursor: pointer;
+	display: block;
+	transition: .3s;
+}
+
+.checkbox input 
+{
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+	margin: 10px 0 0 20px;
+}
+
+.checkbox_text 
+{
+	position: relative;
+	padding: 0 0 0 60px;
+	cursor: pointer;
+}
+
+.checkbox_text:before 
+{
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 45px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: rgba(255,255,255,.45);
+	box-shadow: inset 0 2px 3px rgba(0,0,0,.2);
+	transition: .2s;
+}
+
+.checkbox_text:after 
+{
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	background: rgba(255,255,255,.5);
+	box-shadow: 0 2px 5px rgba(0,0,0,.3);
+	transition: .2s;
+}
+
+.checkbox input:checked + .checkbox_text:after 
+{
+	background: #fff;
+	left: 28px;
+}
+
+.psw a
+{
+	text-decoration: none;
+	color: #fff;
+}
+
+.profile
+{
+	width: 90%;
+	background-color: rgba(255,255,255,.45);
+	margin: auto;
+	border-radius: 10px;
+	display: none;
+}
+
+.profile h2
+{
+	text-align: center;
+}
+
+.profile label
+{
+	display: block;
+	padding: 0 15px;
+}
+
+.profile_data
+{
+	display: block;
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	padding: 10px 20px;
+}
+
+.change_data 
+{
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+}
+.change_data input 
+{
+	width: 400px;
+}
+
+.change_data .save_btn
+{
+	width: 400px;
+}
+
+button:hover 
+{
+	border-color: #fff;
+}
+
+.field:hover
+{
+	border: 2px solid #fff;
+}

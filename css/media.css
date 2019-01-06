@@ -1,0 +1,22 @@
+@media (max-width:767px) 
+{
+	nav ul li 
+	{
+		display: block;
+	}
+
+	nav ul 
+	{
+		display: none;
+	}
+
+	.menu-trigger 
+	{
+		display: block;
+	}
+
+	.menu nav ul li
+	{
+		display: block;
+	}
+}
