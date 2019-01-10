@@ -19,18 +19,10 @@
 
 			<nav>
 
-				<a href="#" class="menu-trigger">Меню</a>
-				<ul>
-					<li>
-						<a href="#" id="login_btn">Войти</a>
-					</li>
-					<li>
-						<a href="#" id="reg_btn">Зарегистрироваться</a>
-					</li>
-					<li>
-						<a href="#" id="profile_btn">Личный кабинет</a>
-					</li>
-				</ul>
+				<button class="menu-trigger">Меню</button>
+				<button class="menu-item" id="login_btn">Войти</button>
+				<button class="menu-item" id="reg_btn">Зарегистрироваться</button>
+				<button class="menu-item" id="exit_btn">Выйти</button>
 
 			</nav>
 
@@ -43,7 +35,7 @@
 				<input name="email" class="field" type="email" placeholder="E-mail">
 
 				<input class="field" type="password" name="password" placeholder="Пароль">
-				<span id="valid_password_message" class="message_error"></span>
+				<span class="result"></span>
 
 				<button id="login_btn_submit" class="submit" type="button">Войти</button>
 				
@@ -70,7 +62,7 @@
 		<div id="reg_form_box" class="reg_form">
 
 			<h2>Зарегистрируйся</h2>
-			<form id="reg_form" class="form" action="" method="post">
+			<form id="reg_form" class="form" action="">
 
 				<input name="phone" id="phone" class="field" type="phone" placeholder="Телефон" value="" autocomplete="off">
 
@@ -93,10 +85,10 @@
 
 			<h2>Ваши данные</h2>
 
-			<div id="profile_data" class="">
+			<form id="profile_data" class="form">
 				
 				<label for="bin">БИН:</label>
-					<input name="bin" id="bin" class="profile_data" type="text" value="Ваш БИН" readonly>
+					<input name="bin" id="bin" class="profile_data" type="numder" value="Ваш БИН" readonly>
 
 				<label for="ip">ИП:</label>
 					<input name="ip" id="ip" class="profile_data" type="text" value="Наименование ИП" readonly>
@@ -112,10 +104,10 @@
 				<label for="resident">Резидентство:</label>
 					<input name="resident" id="resident" class="profile_data" type="text" value="Резидент РК" readonly>
 					<span class="result"></span>
-			    <button class="submit" id="change_profile">Заполнить данные</button>
+			    <button class="chng_btn" id="change_profile">Заполнить данные</button>
 				<button class="save_btn" id="save_profile">Сохранить</button>
 
-			</div>
+			</form>
 		</div>
 	</div>
 </body>

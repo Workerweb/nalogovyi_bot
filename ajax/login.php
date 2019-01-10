@@ -4,17 +4,14 @@
 
 	$data = $_POST;
 
-	$errors = array();
-
-	$user = R::find('users', 'mail = ?', array($data['mail']));
+	$user = R::findOne('users', 'mail = ?', array($data['email']));
 	if ( $user) {
 		if(password_verify($data['password'], $user->password)) {
-
+			$_SESSION['logged_user'] = $user;
+			echo ($_SESSION['logged_user']);
 		} else {
-			$errors[] = "Неверный пароль!"
 		}
 	} else {
-		$errors[] = "Пользователь с таким email-ом не зарегистрирован!"
 	}
 
 	?>

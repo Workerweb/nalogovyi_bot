@@ -2,11 +2,11 @@ jQuery(function($){
 	$("#phone").mask('+7 (999) 999-99-99');
 
 	$('.menu-trigger').click(function(){
-		$('nav ul').slideToggle(300)		
+		$('.menu-item').slideToggle(300)		
 	});
 	$(window).resize(function() {
 		if ($(window).width()> 767) {
-			$('nav ul').removeAttr('style');
+			$('.menu-item').removeAttr('style');
 		}
 	});
 
@@ -25,10 +25,6 @@ jQuery(function($){
 		}
 	});
 
-	$("#profile_btn").on('click', function() {
-		$("#profile_box").css('display', 'block');
-	});
-
 	$(".cnl_btn").on('click', this, function() {
 		var login_form = document.getElementById("login_form_box");
 		var reg_form = document.getElementById("reg_form_box");
@@ -37,15 +33,6 @@ jQuery(function($){
 			$(forms).css('display', 'none');
 		}
 	});
-
-	$("#change_profile").on('click', function() {
-		$("#profile_data").children("input").removeAttr('readonly');
-		$(".profile").css('background-color', 'transparent');
-		$("#profile_data").addClass('change_data');
-		$("#profile_data").children("input").removeClass('profile_data');
-		$("#profile_data").children("input").addClass('field');
-		$(this).hide();
-	})
 
 	$("#reg_form").validate({
 		rules: {
@@ -91,35 +78,91 @@ jQuery(function($){
 
 	$("#reg_btn_submit").on("click", function() {
 		if ($("#reg_form").valid() === true) {
-			request = $.ajax({
+		request = $.ajax({
 			type: "post",
 			url: "/ajax/register.php",
 			data: $("#reg_form").serialize()
-			}).done(function() {
-				$("#reg_form_box").hide();
-				$("#login_form_box").show();
+			}).done(function(response) {
+				if (response === "true") {
+					$("#reg_form_box").hide();
+					$("#login_form_box").show();
+				} else {
+					$(".result", "#reg_form").text("Вы уже зарегистрированы!");
+				}
 			});
 		};
 	});
 
-	$("#save_profile").on("click", function() {
-			request = $.ajax({
+	$("#change_profile").on('click', function(event) {
+		$("#profile_data").children("input").removeAttr('readonly');
+		$(".profile").css('background-color', 'transparent');
+		$("#profile_data").addClass('change_data');
+		$("#profile_data").children("input").removeClass('profile_data');
+		$("#profile_data").children("input").addClass('field');
+		$(this).hide();
+		$("#save_profile").show();
+		event.preventDefault();
+	})
+
+	$("#save_profile").on("click", function(event) {
+		request = $.ajax({
 			type: "post",
 			url: "/ajax/user_data.php",
 			data: $("#profile_data").serialize()
 			}).done(function() {
-				$("#profile_data").find($(".result")).text("done!");
+				$("#profile_data").children("input").attr('readonly');
+				$(".profile").css('background-color', 'rgba(255,255,255,.45)');
+				$("#profile_data").removeClass('change_data');
+				$("#profile_data").children("input").removeClass('field');
+				$("#profile_data").children("input").addClass('profile_data');
+				$("#profile_data").find($(".result")).text("Данные успешно сохранены!");
+				setTimeout(function() {
+					$("#profile_data").find($(".result")).hide("slow");
+					$("#profile_data").find($(".result")).text("");
+				}, 1500);
+				$("#save_profile").hide();
+				$("#change_profile").show();
 			});
+		event.preventDefault();
 	});
 
 	$("#login_btn_submit").on("click", function() {
-			request = $.ajax({
+		request = $.ajax({
 			type: "post",
 			url: "/ajax/login.php",
 			data: $("#login_form").serialize()
-			}).done(function() {
-				$("#login_form_box").hide();
-				$("#profile_box").show();
+			}).done(function(response, textStatus, jqXHR) {
+				if (textStatus === "success") {
+					$("#login_form_box").hide();
+					$("#profile_box").show();
+					load_data = JSON.parse(response);
+					$("#bin").val(load_data['bin']);
+					$("#ip").val(load_data['ip']);
+					$("#surname").val(load_data['surname']);
+					$("#name").val(load_data['name']);
+					$("#patronymic").val(load_data['patronymic']);
+					if (load_data['resident'] == 1) {
+						$("#resident").val("Резидент РК");
+					} else {
+						$("#resident").val("Не Резидент РК");
+					}
+					console.log(load_data['bin']);
+				} else {
+					$(".result", "#login_form").text("Неправильный пароль!");
+					console.log(response);
+				}
 			});
 	});
+
+	$("#exit_btn").on("click", function() {
+		request = $.ajax({
+			type: "post",
+			url: "/ajax/logout.php",
+			success: function(response) {
+				if (response === "true") {
+					$("#profile_box").hide();
+				}
+			}
+		})
+	})
 });

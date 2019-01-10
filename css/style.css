@@ -46,22 +46,18 @@ body,
 	float: right;
 }
 
-.menu nav ul li
+.menu nav button
 {
-	display: inline-block;
-	list-style: none;
 	margin: 5px;
-}
-
-.menu nav ul li a
-{
-	text-decoration: none;
 	color: #fff;
+	border: none;
+	background-color: transparent;
+	font-family: 'Oswald', sans-serif;
+	cursor: pointer;
 }
 
 .menu-trigger
 {
-	text-decoration: none;
 	display: none;
 	color: #fff;
 }
@@ -116,7 +112,8 @@ body,
 
 .submit,
 .cnl_btn,
-.save_btn
+.save_btn,
+.chng_btn
 {
 	border: 2px solid rgba(255,255,255,.45);
 	border-radius: 10px;
@@ -129,6 +126,11 @@ body,
 	cursor: pointer;
 	display: block;
 	transition: .3s;
+}
+
+.save_btn
+{
+	display: none;
 }
 
 .checkbox input 
