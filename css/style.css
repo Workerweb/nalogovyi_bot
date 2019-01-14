@@ -24,6 +24,11 @@ body,
 	-ms-align-items: center;
 	align-items: center;
 	justify-content: center;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-o-flex-direction: column;
+	flex-direction: column;
 	background: #b524b5; /* Old browsers */
 	background: -moz-linear-gradient(-45deg, #b524b5 0%, #5b22d6 36%, #2b53e5 71%, #2faafc 100%, #2989d8 100%, #7db9e8 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(-45deg, #b524b5 0%,#5b22d6 36%,#2b53e5 71%,#2faafc 100%,#2989d8 100%,#7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
@@ -128,11 +133,6 @@ body,
 	transition: .3s;
 }
 
-.save_btn
-{
-	display: none;
-}
-
 .checkbox input 
 {
 	position: absolute;
@@ -182,10 +182,15 @@ body,
 	left: 28px;
 }
 
-.psw a
+.psw 
 {
-	text-decoration: none;
+	background-color: transparent;
 	color: #fff;
+	box-shadow: none;
+	border: none;
+	text-decoration: underline;
+	cursor: pointer;
+	margin-top: 10px;
 }
 
 .profile
@@ -252,3 +257,9 @@ button:hover
 {
 	border: 2px solid #fff;
 }
+
+#profile_data
+{
+	display: none;
+}
+

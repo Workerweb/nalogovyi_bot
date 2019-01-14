@@ -1,4 +1,5 @@
 jQuery(function($){
+
 	$("#phone").mask('+7 (999) 999-99-99');
 
 	$('.menu-trigger').click(function(){
@@ -11,14 +12,14 @@ jQuery(function($){
 	});
 
 	
-	$("#reg_btn").on('click', function() {
+	$(document).on('click', "#reg_btn", function() {
 		if ($("#login_form_box").css('display', 'block')) {
 			$("#login_form_box").css('display', 'none');
 			$("#reg_form_box").css('display', 'block');
 		};
 	}); 
 
-	$("#login_btn").on('click', function() {
+	$(document).on('click', "#login_btn", function() {
 		if ($("#reg_form_box").css('display', 'block')) {
 			$("#reg_form_box").css('display', 'none');
 			$("#login_form_box").css('display', 'block');
@@ -78,10 +79,10 @@ jQuery(function($){
 
 	$("#reg_btn_submit").on("click", function() {
 		if ($("#reg_form").valid() === true) {
-		request = $.ajax({
-			type: "post",
-			url: "/ajax/register.php",
-			data: $("#reg_form").serialize()
+			request = $.ajax({
+				type: "post",
+				url: "/ajax/register.php",
+				data: $("#reg_form").serialize()
 			}).done(function(response) {
 				if (response === "true") {
 					$("#reg_form_box").hide();
@@ -94,35 +95,58 @@ jQuery(function($){
 	});
 
 	$("#change_profile").on('click', function(event) {
-		$("#profile_data").children("input").removeAttr('readonly');
-		$(".profile").css('background-color', 'transparent');
-		$("#profile_data").addClass('change_data');
-		$("#profile_data").children("input").removeClass('profile_data');
-		$("#profile_data").children("input").addClass('field');
-		$(this).hide();
-		$("#save_profile").show();
+		$("#profile").hide();
+		$("#profile_data").css('display', 'flex');
+		$("#profile_box").css('background-color', 'transparent');
+		$("input[name=bin]").val($("#bin").html());
+		$("input[name=ip]").val($("#ip").html())
+		$("input[name=surname]").val($("#surname").html())
+		$("input[name=name]").val($("#name").html())
+		$("input[name=patronymic]").val($("#patronymic").html())
 		event.preventDefault();
 	})
 
 	$("#save_profile").on("click", function(event) {
+		residentVal = function() {
+			val = 0;
+			if ($("input[name=resident]").prop('checked') === true) {
+				val = 1;
+			}
+			return val;
+		};
+		data = {
+			bin: $("input[name=bin]").val(),
+			ip: $("input[name=ip]").val(),
+			surname: $("input[name=surname]").val(),
+			name: $("input[name=name]").val(),
+			patronymic: $("input[name=patronymic]").val(),
+			resident: residentVal()
+		}
 		request = $.ajax({
 			type: "post",
 			url: "/ajax/user_data.php",
-			data: $("#profile_data").serialize()
-			}).done(function() {
-				$("#profile_data").children("input").attr('readonly');
-				$(".profile").css('background-color', 'rgba(255,255,255,.45)');
-				$("#profile_data").removeClass('change_data');
-				$("#profile_data").children("input").removeClass('field');
-				$("#profile_data").children("input").addClass('profile_data');
-				$("#profile_data").find($(".result")).text("Данные успешно сохранены!");
-				setTimeout(function() {
-					$("#profile_data").find($(".result")).hide("slow");
-					$("#profile_data").find($(".result")).text("");
-				}, 1500);
-				$("#save_profile").hide();
-				$("#change_profile").show();
-			});
+			data: data
+		}).done(function() {
+			$("#profile_data").hide();
+			$("#profile").show();
+			$(".profile").css('background-color', 'rgba(255,255,255,.45)');
+			$("#profile").find($(".result")).text("Данные успешно сохранены!");
+			setTimeout(function() {
+				$("#profile").find($(".result")).text('');
+			}, 1500);
+		});
+
+		$("#bin").html($("input[name=bin]").val());
+		$("#ip").html($("input[name=ip]").val());
+		$("#surname").html($("input[name=surname]").val());
+		$("#name").html($("input[name=name]").val());
+		$("#patronymic").html($("input[name=patronymic]").val());
+		if (residentVal() === 1) {
+			$("#resident").text("Резидент РК");
+		} else {
+			$("#resident").text("Не Резидент РК");
+		}
+
 		event.preventDefault();
 	});
 
@@ -131,36 +155,73 @@ jQuery(function($){
 			type: "post",
 			url: "/ajax/login.php",
 			data: $("#login_form").serialize()
-			}).done(function(response, textStatus, jqXHR) {
-				if (textStatus === "success") {
-					$("#login_form_box").hide();
-					$("#profile_box").show();
-					load_data = JSON.parse(response);
-					$("#bin").val(load_data['bin']);
-					$("#ip").val(load_data['ip']);
-					$("#surname").val(load_data['surname']);
-					$("#name").val(load_data['name']);
-					$("#patronymic").val(load_data['patronymic']);
-					if (load_data['resident'] == 1) {
-						$("#resident").val("Резидент РК");
-					} else {
-						$("#resident").val("Не Резидент РК");
-					}
-					console.log(load_data['bin']);
+		}).done(function(response, textStatus, jqXHR) {
+			if (response === "false") {
+				$(".result", "#login_form").text("Неправильный пароль!");
+			} else {
+				load_data = JSON.parse(response);
+				$.cookie('userid', load_data['id']);
+				$("#login_form_box").hide();
+				$("#profile_box").show();
+				$("#bin").text(load_data['bin']);
+				$("#ip").text(load_data['ip']);
+				$("#surname").text(load_data['surname']);
+				$("#name").text(load_data['name']);
+				$("#patronymic").text(load_data['patronymic']);
+				if (load_data['resident'] == 1) {
+					$("#resident").text("Резидент РК");
 				} else {
-					$(".result", "#login_form").text("Неправильный пароль!");
-					console.log(response);
-				}
-			});
+					$("#resident").text("Не Резидент РК");
+				};
+				$("nav").append('<button class="menu-item" id="exit_btn">Выйти</button>');
+				$("#login_btn").remove();
+				$("#reg_btn").remove();
+			};
+		})
 	});
 
-	$("#exit_btn").on("click", function() {
+	function checkUser() {
+		if ($.cookie('userid') == null) {
+
+		} else {
+			request = $.ajax({
+				type: 'post',
+				url: '/ajax/checkuser.php',
+				data: { id: $.cookie('userid')}
+			}).done(function(response) {
+				load_data = JSON.parse(response);
+				if (load_data['id'] === $.cookie('userid')) {
+					$("nav").append('<button class="menu-item" id="exit_btn">Выйти</button>');
+					$("#bin").text(load_data['bin']);
+					$("#ip").text(load_data['ip']);
+					$("#surname").text(load_data['surname']);
+					$("#name").text(load_data['name']);
+					$("#patronymic").text(load_data['patronymic']);
+					if (load_data['resident'] == 1) {
+						$("#resident").text("Резидент РК");
+					} else {
+						$("#resident").text("Не Резидент РК");
+					};
+					$("#profile_box").show();
+				}
+			})
+			if ($.cookie('userid')) {
+				$("#profile_box").show();
+			}
+		}
+	}
+	checkUser();
+	$(document).on("click", "#exit_btn", function() {
 		request = $.ajax({
 			type: "post",
 			url: "/ajax/logout.php",
 			success: function(response) {
 				if (response === "true") {
 					$("#profile_box").hide();
+					$.cookie('userid', null);
+					$("#exit_btn").remove();
+					$("nav").append('<button class="menu-item" id="login_btn">Войти</button>');
+					$("nav").append('<button class="menu-item" id="reg_btn">Зарегистрироваться</button>');
 				}
 			}
 		})

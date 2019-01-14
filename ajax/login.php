@@ -10,6 +10,7 @@
 			$_SESSION['logged_user'] = $user;
 			echo ($_SESSION['logged_user']);
 		} else {
+			echo 'false';
 		}
 	} else {
 	}

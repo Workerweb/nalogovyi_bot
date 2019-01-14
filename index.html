@@ -10,6 +10,7 @@
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.maskedinput.min.js"></script>
 	<script src="js/jquery.validate.js"></script>
+	<script src="js/jquery.cookie.js"></script>
 	<script src="js/script.js"></script>
 </head>
 <body>
@@ -22,11 +23,11 @@
 				<button class="menu-trigger">Меню</button>
 				<button class="menu-item" id="login_btn">Войти</button>
 				<button class="menu-item" id="reg_btn">Зарегистрироваться</button>
-				<button class="menu-item" id="exit_btn">Выйти</button>
 
 			</nav>
 
 		</div>
+		
 		<div id="login_form_box" class="login_form">
 				
 			<h2>Войти</h2>
@@ -50,11 +51,7 @@
 
 			    </label>
 
-			    <span class="psw">
-		    		Забыли <a href="#">
-		    			пароль?
-		    		</a>
-		    	</span>
+			    <button class="psw">Забыли пароль?</button>
 			</form>
 
 		</div>
@@ -85,26 +82,51 @@
 
 			<h2>Ваши данные</h2>
 
+			<div id="profile" class="form">
+				<h3>БИН:</h3>
+				<p id="bin" class="profile_data"></p>
+				<h3>ИП:</h3>
+				<p id="ip" class="profile_data"></p>
+				<h3>Фамилия:</h3>
+				<p id="surname" class="profile_data"></p>
+				<h3>Имя:</h3>
+				<p id="name" class="profile_data"></p>
+				<h3>Отчество:</h3>
+				<p id="patronymic" class="profile_data"></p>
+				<h3>Резидентство:</h3>
+				<p id="resident" class="profile_data"></p>
+				<span class="result"></span>
+				<button class="chng_btn" id="change_profile">Заполнить данные</button>
+			</div>
+
 			<form id="profile_data" class="form">
 				
 				<label for="bin">БИН:</label>
-					<input name="bin" id="bin" class="profile_data" type="numder" value="Ваш БИН" readonly>
+					<input name="bin" class="field" type="numder">
 
 				<label for="ip">ИП:</label>
-					<input name="ip" id="ip" class="profile_data" type="text" value="Наименование ИП" readonly>
+					<input name="ip" class="field" type="text">
 
 				<label for="surname">Фамилия:</label>
-					<input name="surname" id="surname" class="profile_data" type="text" value="Ваша фамилия" readonly>
+					<input name="surname" class="field" type="text">
 
 				<label for="name">Имя:</label>
-					<input name="name" id="name" class="profile_data" type="text" value="Ваше имя" readonly>
+					<input name="name" class="field" type="text">
 
 				<label for="patronymic">Отчество:</label>
-					<input name="patronymic" id="patronymic" class="profile_data" type="text" value="Ваше отчество" readonly>
-				<label for="resident">Резидентство:</label>
-					<input name="resident" id="resident" class="profile_data" type="text" value="Резидент РК" readonly>
+					<input name="patronymic" class="field" type="text">
+
+				<label class="checkbox">
+
+			    	<input type="checkbox" name="resident"> 
+			    	<span class="checkbox_text">
+			    		Резидентство
+			    	</span>
+
+			    </label>
+
 					<span class="result"></span>
-			    <button class="chng_btn" id="change_profile">Заполнить данные</button>
+					
 				<button class="save_btn" id="save_profile">Сохранить</button>
 
 			</form>
