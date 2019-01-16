@@ -10,7 +10,6 @@
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/jquery.maskedinput.min.js"></script>
 	<script src="js/jquery.validate.js"></script>
-	<script src="js/jquery.cookie.js"></script>
 	<script src="js/script.js"></script>
 </head>
 <body>
@@ -30,9 +29,8 @@
 		
 		<div id="login_form_box" class="login_form">
 				
-			<h2>Войти</h2>
 			<form id="login_form" class="form" action="">
-					
+				<h2>Войти</h2>					
 				<input name="email" class="field" type="email" placeholder="E-mail">
 
 				<input class="field" type="password" name="password" placeholder="Пароль">
@@ -41,17 +39,14 @@
 				<button id="login_btn_submit" class="submit" type="button">Войти</button>
 				
 				<button class="cnl_btn" type="button">Отмена</button>
-				
-				<label class="checkbox">
-
-			    	<input type="checkbox" checked="checked" name="remember_me"> 
-			    	<span class="checkbox_text">
-			    		Запомнить меня
-			    	</span>
-
-			    </label>
 
 			    <button class="psw">Забыли пароль?</button>
+			</form>
+
+			<form id="chng_psw_form" class="form" action="">
+				<h2>Введите почту для восстановления пароля</h2>
+				<input name="email" class="field" type="email" placeholder="E-mail">
+				<button id="chng_psw" class="submit" type="button">Отправить</button>
 			</form>
 
 		</div>

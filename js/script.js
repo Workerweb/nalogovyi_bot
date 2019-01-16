@@ -23,6 +23,8 @@ jQuery(function($){
 		if ($("#reg_form_box").css('display', 'block')) {
 			$("#reg_form_box").css('display', 'none');
 			$("#login_form_box").css('display', 'block');
+			$("#login_form").show();
+			$("#chng_psw_form").hide();
 		}
 	});
 
@@ -160,7 +162,6 @@ jQuery(function($){
 				$(".result", "#login_form").text("Неправильный пароль!");
 			} else {
 				load_data = JSON.parse(response);
-				$.cookie('userid', load_data['id']);
 				$("#login_form_box").hide();
 				$("#profile_box").show();
 				$("#bin").text(load_data['bin']);
@@ -179,38 +180,35 @@ jQuery(function($){
 			};
 		})
 	});
-
-	function checkUser() {
-		if ($.cookie('userid') == null) {
-
-		} else {
-			request = $.ajax({
-				type: 'post',
-				url: '/ajax/checkuser.php',
-				data: { id: $.cookie('userid')}
-			}).done(function(response) {
+	function loadSession() {
+		request = $.ajax({
+			type: 'post',
+			url: '/ajax/upload.php'
+		}).done(function(response) {
+			if (response === 'false') {
+				$("#login_form_box").show();
+				$("#chng_psw_form").hide();
+			} else {
 				load_data = JSON.parse(response);
-				if (load_data['id'] === $.cookie('userid')) {
-					$("nav").append('<button class="menu-item" id="exit_btn">Выйти</button>');
-					$("#bin").text(load_data['bin']);
-					$("#ip").text(load_data['ip']);
-					$("#surname").text(load_data['surname']);
-					$("#name").text(load_data['name']);
-					$("#patronymic").text(load_data['patronymic']);
-					if (load_data['resident'] == 1) {
-						$("#resident").text("Резидент РК");
-					} else {
-						$("#resident").text("Не Резидент РК");
-					};
-					$("#profile_box").show();
-				}
-			})
-			if ($.cookie('userid')) {
 				$("#profile_box").show();
+				$("#bin").text(load_data['bin']);
+				$("#ip").text(load_data['ip']);
+				$("#surname").text(load_data['surname']);
+				$("#name").text(load_data['name']);
+				$("#patronymic").text(load_data['patronymic']);
+				if (load_data['resident'] == 1) {
+					$("#resident").text("Резидент РК");
+				} else {
+					$("#resident").text("Не Резидент РК");
+				};
+				$("nav").append('<button class="menu-item" id="exit_btn">Выйти</button>');
+				$("#login_btn").remove();
+				$("#reg_btn").remove();
 			}
-		}
-	}
-	checkUser();
+		})
+	};
+		loadSession();
+
 	$(document).on("click", "#exit_btn", function() {
 		request = $.ajax({
 			type: "post",
@@ -218,12 +216,33 @@ jQuery(function($){
 			success: function(response) {
 				if (response === "true") {
 					$("#profile_box").hide();
-					$.cookie('userid', null);
 					$("#exit_btn").remove();
 					$("nav").append('<button class="menu-item" id="login_btn">Войти</button>');
 					$("nav").append('<button class="menu-item" id="reg_btn">Зарегистрироваться</button>');
 				}
 			}
 		})
+	});
+
+	$(".psw").on('click', function(event) {
+		$("#login_form").hide();
+		$("#chng_psw_form").show();
+		event.preventDefault();
+	})
+
+	$("#chng_psw").on('click', function(event) {
+		request = $.ajax ({
+			type: 'post',
+			url: '/ajax/change_password.php',
+			data: $("#chng_psw_form").serialize()
+		}).done(function(response) {
+			if (response === 'false') {
+
+			} else {
+				$("h2", "#chng_psw_form").html("Функция восстановления пароля в разрабоке");
+			}
+
+		})
+		event.preventDefault();
 	})
 });
