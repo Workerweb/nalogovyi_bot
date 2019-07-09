@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Форма 910</title>
+	<link rel="stylesheet" href="forma.css">
+</head>
+<body>
+	<div class="form-container">
+
+		<div class="page-number-title">
+			
+			<p>форма 910.00 стр.&#8195;01</p>
+
+		</div>
+
+		<div class="form-title">
+			
+			<p>Упрощенная декларация<br> для субъектов &nbsp;малого бизнеса</p>
+
+		</div>
+
+		<div class="bold-line"></div>
+
+		<div class="rules-attention">
+			
+			<p>Прочитайте Правила составления налоговой отчетности «Упрощенная декларация субъектов малого бизнеса». </p>
+			<p>ВНИМАНИЕ! Заполнять шариковой или перьевой ручкой, ЧЕРНЫМИ или СИНИМИ чернилами, ЗАГЛАВНЫМИ ПЕЧАТНЫМИ символами.</p>
+
+		</div>
+
+		<div class="bold-line"></div>
+
+		<div class="total-info">
+			
+			<p>Раздел. Общая информация о налогоплательщике (налоговом агенте)</p>
+
+		</div>
+
+		<div class="iin">
+			
+			<div class="white-cube-num">
+				<p>1</p>
+			</div>
+			
+			<p>ИИН (БИН)</p>
+			
+			<input type="number">
+			
+		</div>
+
+		<div class="fio">
+			
+			<div class="white-cube-num">
+				<p>2</p>
+			</div>
+
+			<p>Фамилия, имя, отчество <br>(при его наличии) или <br>наименование налогоплательщика</p>
+			
+			<input class="fio-input1" type="text">
+			<div class="triangle1">►</div>
+			<div class="triangle2">►</div>
+			<input class="fio-input2" type="text">
+			<div class="triangle3">►</div>
+			<div class="triangle4">►</div>
+			<input class="fio-input3" type="text">
+
+		</div>
+
+		<div class="period">
+			
+			<div class="white-cube-num">
+				<p>3</p>
+			</div>
+
+			<p>Налоговый период, за который представляется налоговая отчетность:</p>
+			<div class="period-inputs">
+				<p>полугодие</p>
+				<input class="half-yearinput" type="number">
+				<p>год</p>
+				<input class="yearinput" type="number" value="2019">
+			</div>
+
+		</div>
+
+		<div class="another-categories">
+			
+			<div class="white-cube-num">
+				<p>4</p>
+			</div>
+			<p>Отдельные категории налогоплательщика</p>
+			<p>(укажите <span>X</span> соответствующей ячейке )</p>
+
+			<div class="categories">
+				
+				<div class="category">
+					<div class="black-cube"><p>A</p></div>
+					<p>доверительный управляющий в соответствии со статьей 40 <br>Налогового кодекса</p>
+					<input type="checkbox">
+				</div>
+				<div class="category">
+					<div class="black-cube"><p>C</p></div>
+					<p>ведет бухгалтерский учет в соответствии с пунктом 2 <br>статьи 2 Закона Республики Казахстан «О бухгалтерском <br> учете и финансовой отчетности»</p>
+					<input type="checkbox">
+				</div>
+				<div class="category">
+					<div class="black-cube"><p>B</p></div>
+					<p>учредитель доверительного управления в соответствии со <br>статьей 40 Налогового кодекса</p>
+					<input type="checkbox">
+				</div>
+				<div class="category">
+					<div class="black-cube"><p>D</p></div>
+					<p>не ведет бухгалтерский учет в соответствии с пунктом 2 <br>статьи 2 Закона Республики Казахстан «О бухгалтерском <br>учете и финансовой отчетности»</p>
+					<input type="checkbox">
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="declaration-form">
+			
+			<div class="white-cube-num">
+				<p>5</p>
+			</div>
+			<p>Вид декларации</p>
+			<p>(укажите <span>X</span> соответствующей ячейке )</p>
+			<div class="declaration-inputs">
+				
+				<label for="">первоначальная</label><input type="radio">
+				<label for="">очередная</label><input type="radio">
+				<label for="">дополнительная</label><input type="radio">
+				<label for="">дополнительная <br>по уведомлению</label><input type="radio">
+				<label for="">ликвидационная</label><input type="checkbox">
+
+			</div>
+
+		</div>
+
+		<div class="notification-number-and-date">
+			
+			<div class="white-cube-num">
+				<p>6</p>
+			</div>
+			<p class="frst-p">Номер и дата уведомления</p>
+			<p class="scnd-p">(заполняется в случае представления дополнительной декларации по уведомлению):</p>
+			<div class="notifications">
+				
+				<div class="black-cube"><p>A</p></div>
+				<p>номер</p>
+				<input class="ntf-input1" type="text">
+				<div class="black-cube"><p>B</p></div>
+				<p>дата</p>
+				<input class="ntf-input2" type="text">
+
+			</div>
+
+		</div>
+
+		<div class="currency-code">
+			
+			<div class="white-cube-num">
+				<p>7</p>
+			</div>
+			<p>Код валюты</p>
+			<select class="currency-select" name="currency-select" id="">
+				<option value="KZT">KZT</option>
+			</select>
+			
+			<div class="white-cube-num">
+				<p>8</p>
+			</div>
+			<div>
+				
+				<p class="frst-p">Признак резидентства</p>
+				<p class="scnd-p">(укажите <span>X</span> в соответствующей ячейке )</p>
+
+			</div>
+			<div class="black-cube"><p>A</p></div>
+			<label for="">резидент <br>Республики Казахстан</label>
+			<input type="radio">
+			<div class="black-cube"><p>B</p></div>
+			<label for="">нерезидент <br>Республики Казахстан</label>
+			<input type="radio">
+
+		</div>
+		
+		<div class="total-info">
+			
+			<p>Раздел. Исчисление налогов</p>
+
+		</div>
+		
+		<div class="tax-calculation">
+			
+			<p>Код строки</p>
+			<p>Наименование показателей</p>
+			<p>МЛРД.</p>
+			<p>МЛН.</p>
+			<p>ТЫС.</p>
+
+		</div>
+
+		<div class="income">
+			
+			<div class="white-rectangle-num"><p>910.00.001</p></div>
+			<p>Доход</p>
+			<input type="number">
+
+		</div>
+
+		<div class="correction-income">
+			
+			<div class="white-rectangle-num"><p>910.00.002</p></div>
+			<p>в том числе доход от корректировки в соответствии с Законом <br>о трансфертном ценообразовании</p>
+			<input type="number">
+
+		</div>
+
+	</div>
+</body>
+</html>
